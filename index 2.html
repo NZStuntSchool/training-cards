@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="NZSS Stunt Hub Training Cards: 90+ training ideas for NZ Stunt School Open Stunt Gym.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>NZSS Stunt Hub Training Cards</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: slate header, filter rail, grid of clapperboard-style cards, slide-up card sheet. Deliberate single dark look in NZSS black & gold. */
+:root{
+  --bg:#121212; --surface:#1c1c1b; --surface-2:#262624; --line:#3a3936;
+  --fg:#f4f2ec; --muted:#a9a69d; --gold:#f5c518; --gold-ink:#121212;
+  --warn:#ff7a45;
+  --display:"Big Shoulders Display","Oswald","Arial Narrow",sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+header{display:flex;flex-direction:column;gap:8px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(40px,9vw,72px);line-height:.92;margin:0;text-transform:uppercase;letter-spacing:.01em;text-wrap:balance}
+h1 span{color:var(--gold)}
+.lede{color:var(--muted);max-width:60ch;margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+button{font:inherit;cursor:pointer}
+.btn{border:1px solid var(--gold);background:var(--gold);color:var(--gold-ink);font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:.04em;text-transform:uppercase;padding:10px 18px;border-radius:4px}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn:hover{filter:brightness(1.08)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.filters{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:14px}
+.row{display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.row::-webkit-scrollbar{display:none}
+.row-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex:0 0 64px}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:6px 12px;border-radius:999px;font-size:13px;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.count{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.card{display:flex;flex-direction:column;gap:10px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:0;color:var(--fg);overflow:hidden;min-width:0}
+.card:hover{border-color:var(--gold)}
+.slate{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--surface-2);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.slate b{color:var(--gold);font-weight:500}
+.card-body{padding:4px 12px 14px;display:flex;flex-direction:column;gap:8px}
+.card h3{font-family:var(--display);font-weight:800;font-size:26px;line-height:1;margin:0;text-transform:uppercase;letter-spacing:.01em}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:11px;padding:2px 7px;border:1px solid var(--line);border-radius:3px;color:var(--muted)}
+.tag.lvl{color:var(--fg)}
+.tag.trained{border-color:var(--warn);color:var(--warn)}
+.empty{color:var(--muted);padding:24px 0}
+.rules{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.rules h2{font-family:var(--display);font-size:24px;text-transform:uppercase;margin:0 0 8px;color:var(--gold)}
+.rules ul{margin:0;padding-left:18px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.rules strong{color:var(--fg)}
+/* sheet */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:20;display:flex;align-items:flex-end;justify-content:center;
+  padding-top:max(24px,env(safe-area-inset-top,0px))}
+.sheet{background:var(--surface);border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;width:100%;max-width:640px;max-height:100%;overflow-y:auto;
+  padding:0 max(18px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));animation:up .22s ease-out}
+@media (min-width:700px){.overlay{align-items:center}.sheet{border-radius:10px;border-bottom:1px solid var(--line);max-height:88vh}}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.sheet-head{position:sticky;top:0;background:var(--surface);display:flex;justify-content:space-between;align-items:center;padding-block:14px 10px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.close{background:transparent;border:1px solid var(--line);color:var(--fg);border-radius:4px;padding:4px 10px;font-size:13px}
+.sheet h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,8vw,44px);line-height:.95;margin:0 0 10px;text-transform:uppercase}
+.sheet h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:18px 0 6px;font-weight:500}
+.sheet ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.sheet p{margin:0}
+.drill{font-family:var(--mono);font-size:14px;background:var(--surface-2);border-left:3px solid var(--gold);padding:10px 12px;border-radius:0 4px 4px 0}
+.safety{border:1px solid var(--warn);color:var(--fg);padding:10px 12px;border-radius:4px;font-size:14px}
+.safety b{color:var(--warn)}
+.plan-item{display:flex;gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.plan-item:last-child{border-bottom:0}
+.plan-time{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);flex:0 0 86px;font-variant-numeric:tabular-nums}
+.plan-link{background:none;border:0;color:var(--fg);padding:0;text-align:left;font-family:var(--display);font-weight:800;font-size:22px;text-transform:uppercase;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
+.plan-sub{color:var(--muted);font-size:13px}
+.sheet-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.buddy{display:flex;gap:10px;align-items:center;background:var(--gold);color:var(--gold-ink);padding:10px 12px;border-radius:4px;font-weight:600;font-size:14px;margin-top:14px}
+.buddy span{font-family:var(--display);font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:.03em}
+.tag.buddy-tag{border-color:var(--gold);color:var(--gold)}
+.tiers{display:flex;flex-direction:column;gap:8px}
+.tier{border:1px solid var(--line);border-radius:4px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.tier.on{border-color:var(--gold);background:var(--surface-2)}
+.tier-name{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tier.on .tier-name{color:var(--gold)}
+.tier p{margin:0}
+.tier .dr{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.sheet ul.keys{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.prompts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.prompt{border:1px solid var(--gold);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;align-items:flex-start;min-width:0}
+.prompt .pn{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.prompt h3{font-family:var(--display);font-weight:800;font-size:26px;line-height:1;margin:0;text-transform:uppercase}
+.prompt p{margin:0;color:var(--muted)}
+.open-to{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);margin:0}
+header .lede{font-size:16px}
+.buddy-band{background:var(--gold);color:var(--gold-ink);border-radius:6px;padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.buddy-band h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,6vw,40px);line-height:1;margin:0;text-transform:uppercase}
+.buddy-band p{margin:0;max-width:65ch}
+.buddy-band .imp{border-top:1px solid rgba(18,18,18,.3);padding-top:8px;font-size:14px}
+.sign-off{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;padding-block:24px 8px;border-top:1px solid var(--line)}
+.sign-off h2{font-family:var(--display);font-weight:800;font-size:32px;margin:0;text-transform:uppercase;color:var(--gold)}
+.sign-off p{margin:0;color:var(--muted);max-width:50ch}
+.motto{font-family:var(--display);font-weight:800;font-size:clamp(40px,10vw,64px);line-height:1;text-transform:uppercase}
+.motto span{color:var(--gold)}
+.wrap>*,.filters>*{min-width:0;max-width:100%}
+.wrap{width:100%}
+[hidden]{display:none!important}
+.note{margin:0;font-weight:600;border-left:3px solid var(--gold);padding:6px 12px;background:var(--surface);max-width:65ch}
+.wrap::before{content:"";display:block;height:10px;border-radius:2px;background:repeating-linear-gradient(-45deg,var(--gold) 0 14px,var(--bg) 14px 28px)}
+.buddy-band{position:relative;overflow:hidden}
+.buddy-band::after{content:"";position:absolute;right:0;top:0;bottom:0;width:14px;background:repeating-linear-gradient(-45deg,var(--gold-ink) 0 8px,transparent 8px 16px);opacity:.85}
+.sign-off::after{content:"";display:block;width:100%;height:10px;margin-top:12px;border-radius:2px;background:repeating-linear-gradient(-45deg,var(--gold) 0 14px,var(--bg) 14px 28px)}
+.card:hover,.card:focus-visible{border-color:var(--gold)}
+.how{display:flex;flex-direction:column;gap:12px}
+.how h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,6vw,36px);margin:0;text-transform:uppercase}
+.how ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;counter-reset:step}
+.how li{counter-increment:step;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;color:var(--muted);min-width:0}
+.how li::before{content:counter(step);font-family:var(--display);font-weight:800;font-size:30px;line-height:1;color:var(--gold)}
+.how li b{color:var(--fg)}
+.book{display:flex;flex-direction:column;gap:2px;align-self:flex-start;text-decoration:none;color:var(--fg);border-left:4px solid var(--gold);padding:6px 0 6px 14px;margin-top:4px}
+.book-k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.book-t{font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:5px}
+.book:hover .book-t{color:var(--gold)}
+.book-btn{text-decoration:none;display:inline-block;margin-top:6px}
+.start{margin:0;padding:12px 14px;border:1px dashed var(--gold);border-radius:6px;color:var(--muted)}
+.start b{color:var(--fg)}
+.ic{width:24px;height:24px;display:block}
+.ic-sm{width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:6px;flex:0 0 auto}
+.chip{display:inline-flex;align-items:center}
+.slate-cat{display:inline-flex;align-items:center;color:var(--gold)}
+.card-top{display:flex;gap:12px;align-items:center}
+.badge{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--gold-ink);display:grid;place-items:center}
+.badge.big{width:56px;height:56px}.badge.big .ic{width:30px;height:30px}
+.sheet-title{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.sheet-title h2{margin:0}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">NZ Stunt School</div>
+    <h1>New to <span>Open Stunt Gym?</span></h1>
+    <p class="open-to">Open to all stunt-trained performers</p>
+    <p class="lede">NZ Stunt School Open Stunt Gym is an opportunity for stunt-trained performers to maintain and develop their skills, explore new ideas, practise with others and connect with the stunt community.</p>
+    <p class="lede">Whether you want to work on fight performance, falls, reactions, movement, acting or create your own mini action scenarios, there's plenty to explore.</p>
+    <p class="note">These are simple training ideas. They do not replace guided training sessions by professionals.</p>
+    <p class="lede">You don't need to follow a structured class. Choose your own training ideas, work at your own level and make the most of the session. An instructor will be on site to assist and supervise where needed.</p>
+    <div class="actions">
+      <button class="btn" id="pick">Pick for me</button>
+      <button class="btn ghost" id="plan">Give me 3 ideas</button>
+      <button class="btn ghost" id="scen">Give me a scenario</button>
+    </div>
+    <a class="book" href="https://www.nzstuntschool.com/en/event/open-stunt-gym-nov-2026/4017/" target="_blank" rel="noopener"><span class="book-k">Next session</span><span class="book-t">Book Open Stunt Gym →</span></a>
+  </header>
+
+  <section class="buddy-band">
+    <h2>Bring a training buddy!</h2>
+    <p>Training is even better with a partner! Bring another stunt-trained performer, challenge each other, practise reactions, work on fight sequences or create your own mini action scenes.</p>
+    <p class="imp"><b>Important:</b> Open Stunt Gym is open to stunt-trained performers. Anyone attending with you must also have appropriate stunt training.</p>
+  </section>
+
+  <p class="start"><b>Not sure where to start?</b> Go through all the cards, or ask a trained buddy or the supervisor on the day to help you choose.</p>
+  <section class="filters" aria-label="Filter cards">
+    <div class="row" id="catRow"><span class="row-label">Skill</span></div>
+    <div class="row" id="lvlRow"><span class="row-label">My level</span></div>
+    <div class="row" id="whoRow"><span class="row-label">With</span></div>
+    <div class="count" id="count"></div>
+  </section>
+
+  <section class="grid" id="grid" aria-live="polite"></section>
+
+  <section class="rules">
+    <h2>Open Stunt Gym rules</h2>
+    <ul>
+      <li><strong>These are simple training ideas.</strong> They do not replace guided training sessions by professionals. Only work on what you've already been taught.</li>
+      <li><strong>Large stunt equipment is available during the session</strong> (wires, deadman and mini high falls for trained performers only).</li>
+      <li><strong>An instructor is on site</strong> to assist and supervise where needed. Train within your own ability and only skills you've been taught.</li>
+      <li><strong>Wires, the deadman and mini high falls</strong> are only for people trained or assessed by NZSS on that equipment. "Pick for me" and "Give me 3 ideas" never choose them.</li>
+      <li><strong>Cards marked "Bring a buddy or more"</strong> need at least one stunt-trained partner. More buddies is fine, just take turns. No buddy, no partner work. Pick a solo card instead.</li>
+      <li>Rubber or training weapons only. Treat every replica as real.</li>
+      <li>Put gear back where it lives. Report damage straight away.</li>
+      <li>Unsure about anything? Stop and ask the instructor before you go again.</li>
+    </ul>
+  </section>
+
+  <footer class="sign-off">
+    <h2>Ready to join us?</h2>
+    <p>Come along, reconnect with the stunt community and keep developing your skills.</p>
+    <a class="btn book-btn" href="https://www.nzstuntschool.com/en/event/open-stunt-gym-nov-2026/4017/" target="_blank" rel="noopener">Book the next session</a>
+    <div class="motto">Train. Connect. <span>Grow.</span></div>
+    <div class="eyebrow">NZ Stunt School – Open Stunt Gym</div>
+  </footer>
+</div>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" id="sheet"></div>
+</div>
+
+<script>
+// w: Solo | Buddy.  L: [Foundation, Intermediate, Advanced] each [what to do, drill].  ta: index of tier that is trained-only
+const CARDS=[
+// FFC FUNDAMENTALS
+{t:"FFC fundamentals check",c:"FFC fundamentals",w:"Buddy",g:["Mats","Phone","Training swords"],s:"Can you execute every Fight for Camera basic perfectly, on both sides?",
+ why:"Every job is built on the fundamentals. Coordinators notice clean basics before anything flashy.",
+ k:["Rolls: forward, backward, side","Falls: front, back, side","Irish whip, kicks, punch sells, hits","Sword: around the world and sword flow","Everything on your strong side, then your other side"],
+ L:[["Pick your weakest fundamental and run it until it's clean","Film and compare"],["Run every fundamental on your weak side. Right-handed? Now go left","Spot the weakest one"],["Put all the fundamentals into one short routine, both sides","Film from two angles"]],
+ x:"Same rules as FFC: distance, camera line, agree every move first."},
+{t:"Rolls: all directions",c:"FFC fundamentals",w:"Solo",g:["Mats"],s:"Forward, backward and side rolls, both sides.",
+ why:"Rolls get you out of falls, dives and throws safely and keep the action moving.",
+ k:["Forward roll","Backward roll","Side roll","Left shoulder and right shoulder"],
+ L:[["Forward, backward and side rolls on your strong side until they're silent","Film one of each"],["Same rolls on your other shoulder. Which side is weaker?","Compare on film"],["Link them: forward into backward into side, both directions","On camera"]],
+ x:"Roll diagonally across the back. Chin tucked, never over the neck."},
+{t:"Falls: front, back, side",c:"FFC fundamentals",w:"Solo",g:["Mats","Crash mat"],s:"All three break falls, both sides.",
+ why:"Falls are in almost every action scene. Clean, safe falls on both sides make you bookable.",
+ k:["Front fall onto forearms","Back fall with the slap","Side fall, left and right"],
+ L:[["Each fall from a squat, strong side first","Film one of each"],["Side falls to your weaker side. Falls from standing","Compare both sides"],["Falls off a reaction: a hit, a shove, a trip","On camera"]],
+ x:"Chin tucked. Head never touches the mat. Mats under every fall."},
+{t:"Irish whip",c:"FFC fundamentals",w:"Buddy",g:["Mats"],s:"Sending your partner flying across the room.",
+ why:"A classic fight move that sells power and moves the fight through the space.",
+ k:["The receiver runs, the thrower only guides","Clear grip and release","Agree where the run ends"],
+ L:[["Walk it slowly on your strong side","Swap roles"],["Switch sides: whip with your other arm","Swap roles"],["Finish into a soft wall, mat or fall","On camera"]],
+ x:"The receiver controls the speed. Soft target only at the end of the run."},
+{t:"Sword: around the world",c:"FFC fundamentals",w:"Solo",g:["Training sword"],s:"The circular flow around your body.",
+ why:"Smooth sword handling reads as skill on camera and builds control for every exchange.",
+ k:["Relaxed grip","Blade stays in its path","Smooth before fast"],
+ L:[["Around the world with your strong hand, slow","Film it"],["Now your other hand. Right-handed? Go left","Compare on film"],["Switch hands mid-flow and link into cuts","On camera"]],
+ x:"Clear space around you. Check the sword for damage first."},
+{t:"Sword flow",c:"FFC fundamentals",w:"Solo",g:["Training sword"],s:"Linking cuts, guards and movement.",
+ why:"Flow makes sword work look trained and natural instead of move-by-move.",
+ k:["Cuts linked without stops","Footwork with the blade","Breathing with the flow"],
+ L:[["Flow your cuts in place, strong hand","Film it"],["Same flow with your other hand, then add footwork","Compare"],["Flow with a buddy as a phrase at 3/4 speed (add a buddy)","On camera"]],
+ x:"Training swords only. Aim at the blade, never the body, when working with a buddy."},
+{t:"Kicks",c:"FFC fundamentals",w:"Solo",g:["Pads","Mats"],s:"Front, side and roundhouse kicks, both legs.",
+ why:"Kicks read big on screen. Clean chamber and control on both legs gives a coordinator options.",
+ k:["Chamber and retract","Balance on the standing leg","Both legs"],
+ L:[["Front, side and roundhouse on your strong leg, on pads","Film it"],["Same kicks on your other leg","Compare on film"],["Kick to a buddy's camera-line miss with a reaction","On camera"]],
+ x:"Warm up hips first. Control the retraction."},
+{t:"Punch sells",c:"FFC fundamentals",w:"Buddy",g:["Phone"],s:"Jab, cross, hook and uppercut on the camera line.",
+ why:"Punch sells are the core of fight work. Distance plus camera line plus reaction makes it look real.",
+ k:["Find the camera line","Full arm's length plus","Lead with either hand"],
+ L:[["Each punch on your strong side, buddy reacts","Film it"],["Switch your lead: right-handed? Now lead left","Compare on film"],["A combo of all four, both leads, with reactions","On camera"]],
+ x:"Arm's length plus. Agree every punch out loud first."},
+{t:"Hits",c:"FFC fundamentals",w:"Buddy",g:["Phone"],s:"Taking the hit: head, body and gut.",
+ why:"The reaction sells the hit. Without it, a perfect punch looks like nothing happened.",
+ k:["React on the hit, not before","Head and body reactions","Both directions"],
+ L:[["Head and body reactions to your buddy's punches","Film it"],["React the other way: hits from the other side","Compare on film"],["Chain of hits that ends in a fall","On camera"]],
+ x:"Move from the torso, not by whipping the neck."},
+// BODY
+{t:"Breathing for action",c:"Body",w:"Solo",g:["Timer"],s:"Control your breath through effort, impacts and retakes.",
+ why:"Calm breathing keeps you clear-headed under pressure, powers your efforts and gets you ready for the next take faster.",
+ k:["Exhale on every impact and effort","Slow nasal breathing to recover","Never hold your breath through a fall"],
+ L:[["Box breathing, then a sharp exhale on every roll","3 min box breathing (4-4-4-4), then 10 rolls"],["Run a fight routine and exhale on every strike and reaction","5 takes"],["Spike your heart rate, then perform a clean routine","30 s burpees, routine, 60 s nasal recovery. 4 rounds"]],
+ x:"Feeling dizzy? Sit down and breathe normally."},
+{t:"Mobility & flexibility",c:"Body",w:"Solo",g:["Mats"],s:"Range for kicks, falls and awkward positions.",
+ why:"High kicks, falls and long shoot days need range without strain. Tight bodies get hurt on take 20.",
+ k:["Hips, upper back, shoulders, ankles","Move in and out of range, don't force it","Range you can control is the range you use"],
+ L:[["10-minute flow: cat-cow, world's greatest stretch, hip circles","1 round, slow"],["Active kicking range: leg swings and cossack squats","3 x 10 each direction, each leg"],["Loaded range: split holds, bridges, kicks held at height","3 x 5 s holds per kick, each leg"]],
+ x:"Stretch warm. Never bounce into end range."},
+{t:"Strength for stunts",c:"Body",w:"Solo",g:["Gym equipment"],s:"Push, pull, legs and grip.",
+ why:"Strength protects you in falls, harnesses and fights, and lets you repeat a stunt cleanly all day.",
+ k:["Squat, push, pull, carry","Grip strength for rigs and grabs","Quality reps over fast reps"],
+ L:[["Squats, push-ups (knees fine), dead hang","10 / 10 / 20 s. 3 rounds"],["Jump squats, push-ups, rows or pull-ups, carries","10 / 10 / 8 / 30 m. 4 rounds"],["Single-leg squats, explosive push-ups, heavy carries","6 each / 8 / 40 m. 5 rounds"]],
+ x:"Form over reps. Stop on any sharp pain."},
+// STUNT ACTION
+{t:"Gunshot reactions",c:"Stunt action",w:"Solo",g:["Mats","Crash mat","Phone"],s:"Taking a hit to the shoulder, gut or leg.",
+ why:"The audience believes the gun because of your reaction. The hit point and timing tell the story.",
+ k:["The hit point drives the movement","React on the cue, not before it","Know where your fall finishes"],
+ L:[["Standing hits to shoulder, gut and leg. No fall","5 of each"],["Hit, drop to a knee, fall to the mat","5 of each, film the best"],["Running hit into a fall onto the crash mat. Then a multi-hit sequence","5 takes each"]],
+ x:"Mats under every fall. Clear the landing zone before each rep."},
+{t:"Fight for camera",c:"Stunt action",w:"Buddy",g:["Phone"],s:"Safe distance that reads as contact on the lens.",
+ why:"Fights are the most common stunt work. Hitting the camera line safely and selling the reaction is the job.",
+ k:["Find the camera line","Keep distance, sell the miss","Agree every move before you speed up"],
+ L:[["Punch and reaction on a phone camera","5 combos, film and review"],["Build an 8-beat routine, run it at 3/4 speed","3 clean takes in a row"],["16 beats with kicks and a takedown, shot from two angles","3 takes per angle"]],
+ x:"Arm's length plus. Both of you agree out loud before any speed increase."},
+{t:"Trips & falls",c:"Stunt action",w:"Buddy",g:["Mats","Crash mat"],ta:2,s:"Going down off a trip, sweep or stumble.",
+ why:"Trips and falls show up in almost every action scene, from comedy to chases.",
+ k:["Chin tucked","Slap to spread the impact","Commit fully, half-falls hurt"],
+ L:[["Back and side break falls from a squat","8 each side, 3 rounds"],["Trip from walking, buddy fakes a sweep, side fall","5 takes each, swap"],["Mini high fall to crash mat. Only if NZSS trained or assessed on it","5 per height, buddy checks the mat"]],
+ x:"Buddy watches each landing and checks the mat. Advanced step is trained-only."},
+{t:"Shoves & throws",c:"Stunt action",w:"Buddy",g:["Mats"],s:"Being pushed, pulled and thrown.",
+ why:"Shoves and throws start fights and end them. The receiver does the work and keeps it safe.",
+ k:["The receiver controls the movement","The pusher guides, never forces","Agree the landing before the shove"],
+ L:[["Shove into a stagger","10 each, swap"],["Shove into a back fall on the mat","5 each, swap"],["Hip throw onto mats, only if you've both been taught it","5 each, slow then 3/4"]],
+ x:"No throws you haven't been taught. Receiver calls the speed."},
+// TACTICAL
+{t:"Weapon handling",c:"Tactical",w:"Solo",g:["Replica guns","Phone"],s:"Stances, draws and moving with a replica.",
+ why:"Productions notice poor muzzle discipline straight away. Clean handling gets you booked for tactical work.",
+ k:["Finger off the trigger","Muzzle never at a face","Low ready, high ready, transitions"],
+ L:[["Low ready, high ready, draws and holsters","10 of each"],["Move with the weapon, reloads, switch to sidearm","5 runs of a 20 m lane"],["Room entry with timing, filmed to check muzzle angles","5 takes, review each"]],
+ x:"Training replicas only. Treat every one as real."},
+{t:"Formations & team movement",c:"Tactical",w:"Buddy",g:["Replica guns"],s:"Stacks, spacing and moving as a unit.",
+ why:"Tactical teams are cast as groups. Moving as one unit is what makes a team look real on screen.",
+ k:["Spacing and stacking","Hand signals and calls","Everyone knows their role"],
+ L:[["Stack of 4 walking a corridor with hand cues","5 runs"],["Doorway clear with set roles","5 runs, rotate roles"],["Contact drill: take fire, fall back, drag a downed teammate","3 full runs, walk-through first"]],
+ x:"Walk-through first. Replicas only. Drags are on mats, slow."},
+{t:"Knife & close quarters",c:"Tactical",w:"Buddy",g:["Rubber knives"],s:"Slashes, blocks and disarms.",
+ why:"Close-quarters knife work is common in thrillers and needs extra control because it's tight to the body.",
+ k:["Rubber knives only","Slow and clean before fast","Control the wrist, not the blade"],
+ L:[["Slash and stab pattern solo, slow","10 reps of the pattern"],["Block and disarm with your buddy","10 slow, 10 at half speed, swap"],["8-beat knife fight on camera","3 clean takes"]],
+ x:"Rubber knives only. Keep the attack slow until it's clean."},
+// CREATURE
+{t:"Animal movement",c:"Creature",w:"Solo",g:["Mats","Knee pads"],s:"Weight, rhythm and where the head leads.",
+ why:"Creatures, zombies and possessions need performers who move in a way that's believable and repeatable.",
+ k:["Find the weight and rhythm","The head leads the movement","Stay consistent across takes"],
+ L:[["Bear crawl, crab walk, lizard crawl","3 x 20 m each"],["Pick an animal and improvise for 2 minutes, film it","2 rounds, review"],["Switch upright to creature in one beat and hold it","Hold the character 5 min"]],
+ x:"Warm up wrists and knees. Wear knee pads."},
+{t:"Crawling & floor work",c:"Creature",w:"Solo",g:["Mats","Knee pads"],s:"Moving low, injured or wrong.",
+ why:"Wounded characters and creatures spend a lot of time on the floor. It has to look right and be repeatable.",
+ k:["Low centre of gravity","Protect knees and elbows","Make the injury or creature tell the story"],
+ L:[["Army crawl and leopard crawl","3 x 15 m each"],["Crawl dragging an injured leg","5 x 10 m"],["Backwards crawl and speed crawl toward camera","5 takes each"]],
+ x:"Clear floor, knee pads. Stop if joints hurt."},
+{t:"Creature acting",c:"Creature",w:"Solo",g:["Phone"],s:"The character inside the movement.",
+ why:"The movement gets you seen. The character behind it makes the scene work.",
+ k:["Stillness before movement","Breath and sound","The eyes do the work"],
+ L:[["One minute of stillness, then sudden movement","5 reps"],["30-second hunt sequence on camera","3 takes"],["React to a hit or attack while staying in character","5 takes"]],
+ x:"Protect your voice. No straining on sounds."},
+// ACTING
+{t:"Anger & aggression",c:"Acting",w:"Solo",g:["Phone"],s:"Real-looking rage, fully in control.",
+ why:"Fights need a reason. Anger makes choreography read as a real fight and not a dance.",
+ k:["Clear intention","Tension in the body, control in the hands","Acted aggression, never real"],
+ L:[["Build anger from 1 to 10 in a mirror or on camera","5 builds"],["Argument beat that turns into a shove (add a buddy)","5 takes"],["Continuous fight take with emotion that stays truthful","3 takes"]],
+ x:"Stay in control. If you feel it getting real, stop."},
+{t:"Fear & pain",c:"Acting",w:"Solo",g:["Phone"],s:"Selling fear and injury.",
+ why:"Pain sells the hit after the hit. Fear sells the threat before it.",
+ k:["Scale the pain to the injury","Breath changes with pain","Keep the injury consistent across takes"],
+ L:[["Pain scale: stubbed toe to stab wound","5 levels, film them"],["Fear run with looks back","5 takes"],["Keep a wound visible through a full fight routine","3 takes"]],
+ x:"Don't hold your breath on pain."},
+{t:"Vocalisation",c:"Acting",w:"Solo",g:[],s:"Efforts, screams and death sounds.",
+ why:"Your sounds get recorded on set. Good efforts sell the action and a supported voice lasts the whole day.",
+ k:["Support from the diaphragm","Open throat","Short bursts, not long strains"],
+ L:[["Effort sounds on punches","20 reps"],["Hit, fall, scream","5 sets"],["Sustained scream and death sounds without strain","3 takes, rest between"]],
+ x:"Warm up your voice. Stop if you go hoarse."},
+// MOVEMENT
+{t:"Rolls",c:"Movement",w:"Solo",g:["Mats"],s:"Forward and back rolls to recover and keep moving.",
+ why:"Rolls get you out of falls and dives safely, and keep the action flowing.",
+ k:["Roll diagonally, shoulder to opposite hip","Tuck the chin","Come up ready"],
+ L:[["Shoulder roll from kneeling, then walking","10 each side"],["Roll from a jog, then over a low soft block","8 each side"],["Dive roll over a soft block, up into a fight stance","8 reps"]],
+ x:"Never roll over the neck or spine."},
+{t:"Jumps & landings",c:"Movement",w:"Solo",g:["Boxes","Mats","Crash mat"],s:"Leaping and landing quietly.",
+ why:"Jumping off ledges, across gaps and over obstacles. Landing well is what keeps you working.",
+ k:["Soft knees","Quiet landings","Roll out when the height asks for it"],
+ L:[["Low box jumps, stick every landing","10 reps"],["Drop from a box, land and roll out","8 reps"],["Gap jumps onto mats, landing on a mark","5 takes"]],
+ x:"Start low. Mats under every landing."},
+{t:"Running for camera",c:"Movement",w:"Solo",g:["Tape","Phone"],s:"Chases, looks back and hitting marks.",
+ why:"Chases look fast on screen at safe speeds. Hitting your mark every take matters more than speed.",
+ k:["Arm drive","Looks back that read on camera","Hit the mark every time"],
+ L:[["Run to a tape mark","5 runs"],["Run, look back, stumble and recover","5 takes"],["Chase with a box vault, finish on a mark, on camera","5 takes"]],
+ x:"Clear run-off space at the end."},
+// CAMERA
+{t:"Continuity",c:"Camera",w:"Buddy",g:["Phone","Tape"],s:"Same hand, same timing, same marks.",
+ why:"Editors cut between takes. If your action doesn't match, the shot gets cut, and so might you.",
+ k:["Same hand and same move every take","Tape your marks","Watch playback"],
+ L:[["Film a 4-move beat, 3 takes, compare them","3 takes"],["Split a routine into 2 shots and match the cut","3 attempts"],["Match the action across 3 angles","2 takes per angle"]],
+ x:"Tape your floor marks before you start."},
+{t:"Screen direction",c:"Camera",w:"Buddy",g:["Phone"],s:"The 180 line and moving the right way.",
+ why:"Moving the wrong way across frame confuses the audience. Knowing the line makes you useful on set.",
+ k:["The 180-degree line","Left-to-right consistency","Crossing the line on purpose"],
+ L:[["Shoot a punch from both sides of the line and compare","2 takes"],["Chase across 3 setups, keep the direction","1 full sequence"],["Fight that crosses the line using a neutral shot","3 takes"]],
+ x:"Clear the space around the camera operator."},
+{t:"Selling action",c:"Camera",w:"Buddy",g:["Phone"],s:"Finding the angle that hides the miss.",
+ why:"The camera angle hides the gap. Knowing where the lens is lets you sell the hit while staying safe.",
+ k:["Hidden-miss angles","Reaction timing","Sound and breath"],
+ L:[["Front-on vs side-on punch check","5 punches each"],["Find the hidden-miss angle for 5 strikes","5 strikes"],["Shoot a full routine, review, fix and reshoot","2 rounds"]],
+ x:"Keep your distance. The angle sells it, not contact."},
+// RECOVERY
+{t:"Warm-up",c:"Recovery",w:"Solo",g:["Mats"],s:"Ready to train before the first fall.",
+ why:"Most injuries happen cold. Stunt performers warm up every time.",
+ k:["Raise the heart rate","Joint circles head to toe","Easy rolls and falls"],
+ L:[["10-minute general warm-up: jog, joint circles, dynamic stretches","10 min"],["Add stunt-specific moves: easy rolls and falls","15 min"],["Lead the group warm-up","15 min"]],
+ x:"Never fall cold."},
+{t:"Stretching & cool-down",c:"Recovery",w:"Solo",g:["Mats"],s:"Bringing the body down after training.",
+ why:"Recovering well means you turn up ready for the next session or the next shoot day.",
+ k:["Slow breathing","Hold stretches 30 s or longer","Target what you trained"],
+ L:[["Full-body cool-down","10 min"],["Target hips, back and shoulders","15 min"],["Build a cool-down for your weakest area","15 min"]],
+ x:"Gentle holds. No bouncing."},
+{t:"Injury prevention",c:"Recovery",w:"Solo",g:["Bands"],s:"Prehab for the joints stunts punish.",
+ why:"Wrists, ankles, necks and shoulders take every fall. Strengthening them keeps you working.",
+ k:["Wrists and ankles","Neck and shoulders","Listen to your body"],
+ L:[["Wrist and ankle prehab routine","2 rounds"],["Neck and shoulder work with bands","3 x 12"],["Build your own plan for your weakest joint","Log it in your notes"]],
+ x:"Pain means stop."},
+// COSTUME
+{t:"Dresses & suits",c:"Costume",w:"Buddy",g:["Costume pieces","Mats"],s:"Fighting and falling in real wardrobe.",
+ why:"You'll rarely fight in gym gear on set. Costumes change your range, your grip and how you fall.",
+ k:["Restricted range","Hidden pads","Check for anything that catches"],
+ L:[["Walk through your routine in a jacket or long skirt","3 slow runs"],["Full routine at 3/4 in costume, falls on mats","3 takes"],["Fall in costume with hidden pads, on camera","5 takes"]],
+ x:"Nothing tight around the neck. Check the costume can't catch on anything."},
+{t:"Heels & footwear",c:"Costume",w:"Solo",g:["Heels or boots","Mats"],s:"Fighting and running in heels and boots.",
+ why:"Heels and dress shoes change balance and grip. Productions need performers who can work in them.",
+ k:["Balance and grip","Short steps","Ankle strength"],
+ L:[["Walking, turning and stopping in heels","5 min"],["Fight routine in heels at half speed","3 runs"],["Run and fall in heels onto mats","5 takes"]],
+ x:"Start with a lower heel. Warm up ankles first."},
+{t:"Prosthetics & masks",c:"Costume",w:"Buddy",g:["Mask or goggles"],s:"Working with limited vision and breath.",
+ why:"Masks and prosthetics cut your vision, breathing and hearing. You still have to hit every mark.",
+ k:["Learn your new field of vision","Breathe calmly","Use verbal cues"],
+ L:[["Run your routine slowly in a mask or restricted goggles","3 slow runs"],["Buddy gives verbal cues through the routine","3 runs"],["Fight in the mask at 3/4 speed","3 takes"]],
+ x:"Your buddy watches the whole time. Stop straight away if you lose vision or struggle to breathe."},
+// ACTION ACTING
+{t:"Fighting in character",c:"Acting",w:"Buddy",g:["Phone"],s:"Hero, villain, survivor: who is throwing the punch?",
+ why:"Two performers can run the same choreography and look like different films. Character is what makes a fight memorable.",
+ k:["Who is your character and what do they want?","How do they fight: trained, wild, desperate?","Does the fight change them as it goes?"],
+ L:[["Run a simple routine as two different characters","Film and compare"],["Swap roles with your buddy: winner becomes loser","Notice what changes"],["Show a character arc inside one fight: confident to desperate","On camera"]],
+ x:"Character changes the acting, not the distance or the speed you agreed."},
+{t:"Exhaustion & aftermath",c:"Acting",w:"Solo",g:["Phone"],s:"The moment after the fight.",
+ why:"The aftermath tells the audience what the fight cost. It's often the shot that makes the final cut.",
+ k:["Breath that matches the fight you just had","Checking injuries, finding the threat","Stillness versus collapse"],
+ L:[["Play winded after a short routine","Film the 10 seconds after"],["Play injured: which part hurts and how does it change you?","Try three versions"],["Play the moment you realise it's not over","On camera"]],
+ x:"Act the exhaustion. Take real rest between takes."},
+{t:"Eyelines & intention",c:"Acting",w:"Buddy",g:["Phone"],s:"Where you look sells what's happening.",
+ why:"Eyes tell the camera where the threat is, where the hit lands and who's in control.",
+ k:["Look at the target, not at your hand","Eyes before the move","React with the eyes first, the body second"],
+ L:[["Run a routine and only focus on where you're looking","Film it and watch the eyes"],["React to an off-screen threat with no one there","Three versions"],["Fight where the eyes tell the story with no dialogue","On camera"]],
+ x:"Keep awareness of your partner even when your eyes are acting."},
+{t:"Threat & intimidation",c:"Acting",w:"Buddy",g:["Rubber weapons","Phone"],s:"Holding power before a hit is thrown.",
+ why:"Most action scenes start with a threat. Selling danger without moving much makes the scene tense.",
+ k:["Stillness is scarier than movement","Space: close it slowly","Status: who's in control?"],
+ L:[["Stand-off with your buddy, no touching, no words","Film 30 seconds"],["Threat with a rubber weapon, then the turn","Swap roles"],["Interrogation beat that ends in a fight","On camera"]],
+ x:"Rubber weapons only. No weapon near the face or throat."},
+// SCENARIOS
+{t:"Wounded escape",c:"Scenarios",w:"Solo",g:["Mats","Phone"],s:"You've been shot in the right leg. Get out.",
+ why:"Scripts rarely say 'fall'. They say what happened to the character. Building a mini scene from an injury is what you'll do on set.",
+ k:["Choose the injury and keep it consistent","What does the character need: exit, cover, help?","Tell the story with the body"],
+ L:[["Shot in the right leg: limp to a door and get through it","Film one take"],["Now it's your left ankle. Same escape, different injury","Compare both"],["Shot again on the way out: fall to the mat and crawl to cover","One continuous take"]],
+ x:"Act the injury, your body is fine. Mats under any fall."},
+{t:"Injured fight",c:"Scenarios",w:"Buddy",g:["Mats","Phone"],s:"Keep fighting with an injury.",
+ why:"Fights get messy on screen. An injured fighter is more interesting and sells real stakes.",
+ k:["The injury changes how you fight","Protect the injured side","Pain spikes on every hit to it"],
+ L:[["Right shoulder injured: run your fight routine one-armed","Film it"],["Injury swaps mid-fight: the buddy finds your weak spot","3 takes"],["Win or lose the fight because of the injury","One continuous take"]],
+ x:"Same distance and speed you agreed. The injury is acted, not real."},
+{t:"Drag to safety",c:"Scenarios",w:"Buddy",g:["Mats"],s:"Get your wounded buddy out.",
+ why:"Rescue moments are huge on screen and need trust and control between two performers.",
+ k:["The wounded performer helps without showing it","Lift with legs, not back","Agree the path"],
+ L:[["Buddy is hit in the leg: support them to cover","Swap roles"],["Drag them by the vest or shoulders across mats","Swap roles"],["Under fire: duck, drag and react to near misses","On camera"]],
+ x:"Drags on mats only, slow. No dragging by the neck or arms."},
+// PRECISION
+{t:"Footwork",c:"Precision",w:"Solo",g:["Tape","Phone"],s:"Where your feet go decides whether the fight works.",
+ why:"Good footwork keeps distance safe, keeps you on the camera line and makes every move repeatable.",
+ k:["Small steps, balanced base","Feet set before the strike","Moving forward, back and around your partner"],
+ L:[["Shadow a routine and only watch your feet","Film from the floor"],["Tape your foot positions and hit them on every move","Run it 5 times"],["Fight while moving around a buddy and keep the camera line","On camera"]],
+ x:"Clear floor. Check for loose mats or tape that could trip you."},
+{t:"Precision landing",c:"Precision",w:"Solo",g:["Tape","Mats","Crash mat","Boxes"],s:"Land on the exact spot, every time.",
+ why:"The camera, the lighting and the next performer are all set to your landing spot. Missing it ruins the take.",
+ k:["Eyes on the landing spot","Same take-off every time","Stick it, don't step out"],
+ L:[["Tape an X and land on it from a small jump","Count how many you nail"],["Land a roll or fall with your hips on the X","Film it from above if you can"],["Land a jump off a box onto a mark, then go straight into action","On camera"]],
+ x:"Start low. Mats under every landing."},
+{t:"Marks",c:"Precision",w:"Solo",g:["Tape","Phone"],s:"Hit your mark without looking down.",
+ why:"On set you'll have tape marks for start, hit and end. Hitting them without looking keeps you in focus and in frame.",
+ k:["Count your steps to the mark","Feel the mark, don't look for it","Start, hit and end marks"],
+ L:[["Walk to a tape mark without looking down","10 tries, check how close"],["Run, react and stop on your end mark","5 takes"],["A short fight with start, hit and end marks","3 takes on camera"]],
+ x:"Use flat tape so nobody trips on it."},
+{t:"Timing",c:"Precision",w:"Buddy",g:["Phone"],s:"The hit and the reaction land together.",
+ why:"If the reaction is late or early, the hit looks fake. Timing is what makes it real.",
+ k:["React on the hit, not before","Count the beats out loud","Same rhythm every take"],
+ L:[["Punch and reaction with your buddy counting the beats","Film and watch frame by frame"],["Change the rhythm: fast, fast, pause, hit","Swap roles"],["Run the whole routine to a count, then with no count","Compare on camera"]],
+ x:"Speed stays where you both agreed. Timing gets better, the speed doesn't change."},
+{t:"Precision challenge",c:"Precision",w:"Buddy",g:["Tape","Phone"],s:"Do it exactly the same 5 times in a row.",
+ why:"Coordinators book performers who can repeat it. Take 10 has to match take 1.",
+ k:["Same marks","Same timing","Same performance"],
+ L:[["Pick one move, film 5 takes and compare them","Spot the difference"],["Pick a 4-move beat and do 5 matching takes","Your buddy judges"],["Full routine: 5 takes, one camera angle, cut them together","Does it match?"]],
+ x:"Rest between takes. Tired performers lose precision and get hurt."},
+// SCENARIOS (more)
+{t:"Shot, then run injured",c:"Scenarios",w:"Solo",g:["Mats","Phone"],s:"Take the gunshot, then get away hurt.",
+ why:"Most gunshot scenes don't end at the hit. The run away has to show the injury every step.",
+ k:["Choose where the hit lands","The injury changes your run","Keep it the same every take"],
+ L:[["Shot in the right leg: react, then limp away","Film one take"],["Shot in the shoulder: react, then run holding it, look back","Compare with the leg"],["Shot again while running: fall onto the mat and keep crawling","One continuous take"]],
+ x:"Mats under any fall. Clear run-off space."},
+{t:"Shooter: right hand",c:"Scenarios",w:"Solo",g:["Replica guns","Phone"],s:"Shooting with your strong hand, moving and reacting.",
+ why:"Firing scenes need performers who look in control of the weapon and react to the recoil and the world around them.",
+ k:["Grip and stance","Recoil on every shot","Muzzle never at a face"],
+ L:[["Shoot from your right hand, standing, with recoil","Film it"],["Move to cover while shooting","5 takes"],["Shoot, take cover, reload, return fire","On camera"]],
+ x:"Replicas only. Never point at a person's face."},
+{t:"Shot in the arm: switch hands",c:"Scenarios",w:"Solo",g:["Replica guns","Phone"],s:"Your shooting arm is hit. Now use the other hand.",
+ why:"Losing your strong hand mid-fight is a classic moment. It only works if you can actually handle the weapon with your weak hand.",
+ k:["Sell the hit to the arm","Switch the weapon over","Weak-hand shooting looks less steady"],
+ L:[["Shot in the right arm: drop the gun, pick it up left-handed","5 takes"],["Switch hands and shoot left-handed while moving to cover","Film it"],["Left-handed only: full firefight, keep the injured arm consistent","On camera"]],
+ x:"Replicas only. Never point at a person's face. Drop the gun onto a mat."},
+{t:"Weak-side fight",c:"Scenarios",w:"Buddy",g:["Phone"],s:"Your strong arm is out. Fight with the other one.",
+ why:"Injury fights show you can adapt. It also trains your weak side for every other job.",
+ k:["Protect the injured arm","Lead with the other side","Pain when the injured arm gets touched"],
+ L:[["Run your routine using only your left arm","Film it"],["Buddy targets your injured arm, you react in pain","Swap roles"],["Win the fight one-armed","On camera"]],
+ x:"Same agreed distance and speed. The injury is acted."},
+{t:"Knife wound, keep going",c:"Scenarios",w:"Buddy",g:["Rubber knives","Mats","Phone"],s:"Cut in the fight, then finish it.",
+ why:"Knife fights are short and brutal. The moment after the cut shows the stakes.",
+ k:["React to the cut, then hold the wound","Fight more carefully after","Breath changes"],
+ L:[["Buddy slashes your forearm: react and back away","Swap roles"],["Cut, then disarm the attacker","5 takes"],["Cut, disarm, then collapse when it's over","On camera"]],
+ x:"Rubber knives only. Keep the attack slow until it's clean."},
+{t:"Blast and recover",c:"Scenarios",w:"Solo",g:["Crash mat","Phone"],s:"Thrown by an explosion, then get back up.",
+ why:"After the blast, the audience needs to see the character dazed, hurt and finding their way.",
+ k:["Self-powered jerk-back onto the crash mat","Ringing ears, blurred vision","Find the threat or the exit"],
+ L:[["Jump back onto the crash mat and play dazed","5 takes"],["Blast, then crawl and find your weapon","Film it"],["Blast, get up injured and keep fighting","One continuous take"]],
+ x:"Crash mat only. Check where you're landing before every rep."},
+// LEVEL IT UP
+{t:"Flexibility",c:"Body",w:"Solo",g:["Mats","Pilates equipment"],s:"Splits, backbends and high kicks.",
+ why:"Flexibility gives you higher kicks, safer falls and more options for big reactions. It's also what stops pulls on long shoot days.",
+ k:["Warm first, stretch second","Hold, breathe, relax into it","Both sides, every time"],
+ L:[["Front and side split stretches, hamstrings and hips","Hold each 45 s, both sides"],["Active flexibility: hold your kicks at full height","5 holds per kick, each leg"],["Backbends and bridges into a reaction or a fall","Film your range and compare next session"]],
+ x:"Never bounce. Stop at a stretch, not pain."},
+{t:"Try another weapon",c:"Tactical",w:"Solo",g:["Training swords","Sticks","Staff","Rubber props"],s:"Good with a sword? Pick up something else.",
+ why:"Every production uses different weapons. Being comfortable with more than one makes you more bookable.",
+ k:["Different weight, different reach","Find the grip and the flow","Same safety rules for every weapon"],
+ L:[["Swap your sword for a stick or staff and find the flow","Film it"],["Run your sword phrase with the new weapon","Compare the two"],["Two weapons in one fight, or switch mid-fight","On camera"]],
+ x:"Training or rubber weapons only. Check each one for damage first."},
+{t:"Rolls on the mini tramp",c:"Movement",w:"Buddy",g:["Mini trampoline","Crash mat"],s:"Rolls are clean? Add height.",
+ why:"The mini tramp gives you height for dives, flips and big reactions. Clean rolls on the ground come first.",
+ k:["Clean rolls on the ground first","Controlled take-off","Land the roll, not the head"],
+ L:[["Small bounce from the mini tramp into a shoulder roll","Buddy watches"],["Dive roll off the mini tramp onto the crash mat","Film it"],["Dive over a low soft obstacle into a roll and up into action","On camera"]],
+ x:"Only if you've been shown the mini tramp at NZSS. Buddy watches every rep. Crash mat on the landing."},
+{t:"Bring a costume",c:"Costume",w:"Solo",g:["Your costume","Phone"],s:"Sportgear, a suit, barefoot: it all changes how you move.",
+ why:"On set you'll never be in sportgear. A suit restricts your arms, shoes change your grip, barefoot changes your falls.",
+ k:["Bring a suit, boots, a dress or whatever you could be cast in","Same move in sportgear vs costume","Barefoot vs shoes"],
+ L:[["Run your routine in sportgear, then in costume","Film both and compare"],["Falls and rolls in costume: what catches, what restricts?","Note it down"],["Full scenario in costume, barefoot or in shoes, on camera","3 takes"]],
+ x:"Nothing tight around the neck. Check shoes for grip before falls."},
+// TRAINED ONLY: deadman
+{t:"Deadman",c:"Wires & high falls",w:"Buddy",g:["Deadman rig","Harness","Crash mat"],trained:true,s:"The fall-and-stop on the deadman.",
+ why:"The deadman lets you take big falls that stop just before impact. It's specialist work productions need trained performers for.",
+ k:["Harness and line check every time","Commit to the fall shape","Trust the stop"],
+ L:[["Harness check and a low-height test with the team","3 reps"],["Back fall on the deadman with a reaction","5 reps"],["Fall with a hit reaction before it, on camera","Only as many as you can do fresh"]],
+ x:"Advanced only. Only if NZSS trained or assessed on the deadman, with a trained operator."},
+// MORE IDEAS
+{t:"Takedowns",c:"Stunt action",w:"Buddy",g:["Mats","Phone"],s:"Taking someone to the ground, safely.",
+ why:"Most fights end on the ground. A clean takedown looks brutal while the receiver stays in control.",
+ k:["The receiver does the fall","The attacker guides, never forces","Agree the landing spot"],
+ L:[["Single or double leg takedown at walking speed onto mats","Swap roles"],["Takedown from a fight beat into a back fall","5 takes each"],["Takedown into a ground fight and finish","On camera"]],
+ x:"Only takedowns you've been taught. Mats only. Receiver calls the speed."},
+{t:"Tackles",c:"Stunt action",w:"Buddy",g:["Crash mat","Phone"],s:"Running tackles that look huge.",
+ why:"Tackles are in chases, sports scenes and fights. Big on camera, controlled between the performers.",
+ k:["Shoulder to the hip, not the head","The tackled performer jumps into it","Land together on the crash mat"],
+ L:[["Walking tackle onto the crash mat","Swap roles"],["Jogging tackle with the receiver selling the hit","5 takes each"],["Running tackle from a chase, on a mark","On camera"]],
+ x:"Crash mat only. Heads to the side. Build speed slowly."},
+{t:"Two versions: trained vs untrained",c:"Acting",w:"Buddy",g:["Phone"],s:"Same fight, John Wick style, then as someone who's never fought.",
+ why:"Coordinators cast the right fighter for the character. Showing you can be a slick professional and a desperate amateur doubles your range.",
+ k:["Trained: efficient, precise, no wasted movement","Untrained: wild swings, panic, bad balance","Same choreography, different person"],
+ L:[["Make a short fight and play it slick and efficient","Film it"],["Same fight as someone who's never thrown a punch","Film and compare"],["Cut both versions side by side for your reel","Watch them back to back"]],
+ x:"Wild doesn't mean unsafe. Same distance and speed you agreed."},
+{t:"Casualty carry",c:"Stunt action",w:"Buddy",g:["Mats","Backpack"],s:"Carrying a wounded soldier out.",
+ why:"War and rescue scenes need carries that look heavy and real, done safely by both performers.",
+ k:["Backpack-style lift: legs, not back","The carried performer helps without showing it","Agree the pick-up and the drop"],
+ L:[["Backpack-style carry: walk 10 m and set down gently","Swap roles"],["Fireman's carry or drag, with a buddy who's similar weight","5 m, swap"],["Carry under fire, take a hit and go down together onto mats","On camera"]],
+ x:"Similar-sized partners only. Lift with your legs. Stop if your back complains."},
+{t:"Same fight, three genres",c:"Acting",w:"Buddy",g:["Phone"],s:"Gritty, comedy, horror.",
+ why:"The same choreography changes completely with tone. Being able to shift genre makes you useful on any production.",
+ k:["Gritty: heavy, tired, real","Comedy: timing and surprise","Horror: fear and desperation"],
+ L:[["Play a short fight gritty, then as comedy","Film both"],["Add a horror version","Compare all three"],["Your buddy calls the genre mid-fight and you switch","On camera"]],
+ x:"Changing the tone never changes the agreed distance or speed."},
+{t:"Ground fight",c:"Stunt action",w:"Buddy",g:["Mats","Phone"],s:"The fight that goes to the floor.",
+ why:"Ground fights are messy and intense on screen. They need control because you're so close.",
+ k:["Mount, guard and scrambles","Strikes go to the mat, not the face","Keep it readable on camera"],
+ L:[["Slow scramble for top position","Swap roles"],["Mounted punches to the mat beside the head, with reactions","5 takes"],["Ground fight that ends with one of you escaping","On camera"]],
+ x:"Mats only. No real chokes or locks. Tap means stop."},
+{t:"Fight in a tight space",c:"Scenarios",w:"Buddy",g:["Boxes","Props","Phone"],s:"Hallway, toilet cubicle, lift.",
+ why:"Locations are rarely open floors. Tight spaces change everything about distance and moves.",
+ k:["Use walls and objects","Short moves only","Plan where the camera fits"],
+ L:[["Mark out a small space with boxes and run your fight inside it","Film it"],["Use a wall or a box in the choreography","5 takes"],["One-take fight in the tight space","On camera"]],
+ x:"Pad any hard edges. Slow down in tight spaces."},
+{t:"One-take oner",c:"Camera",w:"Buddy",g:["Phone"],s:"The whole fight, no cuts.",
+ why:"Long single takes are popular in action films. You need stamina, memory and consistency.",
+ k:["Know the whole routine cold","Pace yourself","Recover from small mistakes without stopping"],
+ L:[["20-second fight in one take","3 attempts"],["40 seconds with a fall in it","3 attempts"],["Full scenario, moving camera, no cuts","Best of 3"]],
+ x:"Rest between takes. Tired performers make mistakes."},
+{t:"Self-tape action clip",c:"Camera",w:"Buddy",g:["Phone","Tripod"],s:"Shoot something you could send to a coordinator.",
+ why:"Coordinators ask for self-tapes. A clean 30-second action clip can get you the job.",
+ k:["Good framing and light","Short and clean beats long and messy","Show your best skill first"],
+ L:[["Shoot a 15-second clip of your strongest skill","Watch it back"],["30-second fight or fall sequence, framed properly","Best of 5"],["Edit it into a clip you'd send","Share it with your buddy for notes"]],
+ x:"Same safety rules apply on camera as off it."},
+{t:"Teach your buddy",c:"Recovery",w:"Buddy",g:[],s:"Explain a skill you know well.",
+ why:"If you can teach it, you really understand it. It's also how future instructors and coordinators start.",
+ k:["Break it into steps","Watch, then give one note","Let them try again"],
+ L:[["Teach your buddy one roll or fall you're good at","10 minutes"],["Teach a short fight beat","15 minutes"],["Run your buddy through a mini scenario you designed","20 minutes"]],
+ x:"Only teach what you've been taught and are confident in."},
+{t:"Buddy at a different level",c:"Stunt action",w:"Buddy",g:["Mats","Phone"],s:"Train with someone more or less experienced than you.",
+ why:"On set you'll work with performers at every level. Adapting to your partner, and learning from them, is part of the job.",
+ k:["The less experienced performer sets the speed","The more experienced one leads and gives notes","Both get something out of it"],
+ L:[["Work the less experienced performer's level and keep it clean","Swap who leads"],["The experienced buddy adds one step up for the other to try","Film it"],["Build a short fight that shows off both of your strengths","On camera"]],
+ x:"Always train at the lower level of the two. Nobody tries a skill they haven't been taught."},
+{t:"Room clear",c:"Tactical",w:"Buddy",g:["Replica guns","Boxes","Props"],s:"Set up a room and clear it as a team.",
+ why:"Room clears are in almost every tactical show. Clean entries, angles and calls make a team look real.",
+ k:["Stack, entry and corners","Each person owns an angle","Clear calls: 'Clear', 'Contact'"],
+ L:[["Set up a room with boxes and props, walk the clear slowly","3 runs, rotate positions"],["Add a threat behind cover and react to it","5 runs"],["Clear two rooms with contact, a casualty and a carry out","On camera"]],
+ x:"Replicas only. Muzzles never at anyone's face. Walk-through before speed."},
+// CREATURES (more)
+{t:"Zombies",c:"Creature",w:"Solo",g:["Mats","Knee pads","Phone"],s:"Slow shamblers, fast runners and the ones on the floor.",
+ why:"Zombie work is a big part of horror and genre jobs. Productions need performers who can stay in it all day and take the hits.",
+ k:["Pick your type: slow, fast or crawler","The injury that killed you shapes how you move","Hunger drives everything"],
+ L:[["Find your zombie walk and hold it for 2 minutes","Film it"],["Fast zombie: run, crash into something soft, keep coming","5 takes"],["Zombie gets shot or hit, goes down, gets back up wrong","On camera"]],
+ x:"Protect your knees and voice. Falls onto mats only."},
+{t:"Goblins",c:"Creature",w:"Solo",g:["Mats","Knee pads","Phone"],s:"Small, quick, sneaky and nasty.",
+ why:"Fantasy productions fill battles with goblins and orcs. Small, twitchy creatures need low, fast, controlled movement.",
+ k:["Low centre of gravity","Quick, twitchy head movement","Curious, greedy, cowardly"],
+ L:[["Move low through the room as a goblin for 2 minutes","Film it"],["Goblin with a training sword or stick: attack and flee","5 takes"],["Goblin gets hit, rolls away and comes back sneaky","On camera"]],
+ x:"Warm up legs and back. Knee pads on for low work."},
+{t:"Big creatures",c:"Creature",w:"Solo",g:["Mats","Phone"],s:"Trolls, giants and beasts: weight and size.",
+ why:"Big creatures sell their size through slow weight and power. It's a different skill from fast fighting.",
+ k:["Slow, heavy, planted steps","Every movement has weight","Turning takes time"],
+ L:[["Walk as something three times your size","Film it"],["Big creature swats a buddy away (sold, not touched)","5 takes"],["Big creature takes a hit, staggers and falls slowly onto the crash mat","On camera"]],
+ x:"Big doesn't mean fast. Control every swing."},
+{t:"Low visibility: bring a mask",c:"Creature",w:"Buddy",g:["Your mask","Mats"],s:"Got a mask at home? Bring it and train in it.",
+ why:"Creature masks and prosthetics block your vision. Productions need performers who can hit marks and fight safely with very little sight.",
+ k:["Learn what you can and can't see","Count your steps to marks","Use your buddy's verbal cues"],
+ L:[["Walk your marks in the mask, buddy watches","Take turns"],["Creature movement in the mask at half speed","Film it"],["Short fight or reaction in the mask with verbal cues","On camera"]],
+ x:"Your buddy watches the whole time. Take the mask off straight away if you struggle to breathe or lose your bearings."},
+{t:"Scared of heights",c:"Wires & high falls",w:"Buddy",g:["Mini high fall scaffold"],ta:2,s:"Get used to height before you ever fall from it.",
+ why:"Fear of heights is normal. Getting comfortable standing at height comes before any high fall, ladder or rooftop scene.",
+ k:["Climb up and just stay there","Slow breathing, look around, look down","Do not fall unless you're NZSS trained on it"],
+ L:[["Climb the mini high fall scaffold to the lowest level and stay there","1 minute, then come down"],["Go one level higher. Stand, turn around, look down","Stay until your breathing settles"],["Trained on mini high falls only: fall from the lowest step","Buddy checks the mat"]],
+ x:"Stand or sit only. Do not fall unless you are NZSS trained or assessed on the mini high fall. Your buddy stays with you."},
+// ROLE MINI SCENARIOS
+{t:"Doubling: the rifle hit",c:"Scenarios",w:"Buddy",g:["Replica rifle","Mats","Phone"],s:"You're doubling the lead. Shot while clearing a room with a K15.",
+ why:"When you double an actor, you have to move like them. The audience should never see the switch.",
+ k:["Watch how your 'actor' (your buddy) moves first","Match their stance and rifle carry","Sell the hit, keep the rifle safe"],
+ L:[["Clear a doorway with the rifle, take a shoulder hit and drop to a knee","Take turns"],["Hit, fall onto the mat, keep control of the rifle","5 takes each"],["Your buddy does it first as 'the actor', you copy it exactly as the double","Film both and compare"]],
+ x:"Replica rifle only. Muzzle never at a face. Keep the rifle off your body when you fall."},
+{t:"Doubling: sword duel",c:"Scenarios",w:"Buddy",g:["Training swords","Mats","Phone"],s:"You're doubling the villain in a sword fight that ends with you going down.",
+ why:"Villain doubles do the big losses. A great defeat makes the hero look good.",
+ k:["Strong, confident villain energy","The hero's final cut is a sold miss","The fall finishes the story"],
+ L:[["Run a 5-cut exchange as the villain","Swap roles"],["Lose your sword, then take the final cut and go down","5 takes each"],["Full duel with a defeat moment, on camera","Best of 3"]],
+ x:"Training swords only. Aim at the blade, never the body. Mats under the fall."},
+{t:"Doubling: knife ambush",c:"Scenarios",w:"Buddy",g:["Rubber knives","Mats","Phone"],s:"You're doubling the hero, attacked from behind with a knife.",
+ why:"Ambushes are fast and close. The double has to react on cue and stay in control.",
+ k:["Surprise, but know it's coming","Control the knife arm first","Turn the fight round"],
+ L:[["Feel the grab, turn and block the knife arm","Take turns, slow"],["Block, disarm and push away","5 takes each"],["Ambush, disarm and finish with a takedown on mats","On camera"]],
+ x:"Rubber knives only. Nothing near the face or throat. Slow until it's clean."},
+{t:"Doubling: handgun firefight",c:"Scenarios",w:"Solo",g:["Replica handgun","Boxes","Phone"],s:"You're doubling the lead. Shot in the arm, finish left-handed.",
+ why:"Firefights are cut together from many angles. The double has to be consistent with the gun every take.",
+ k:["Same grip and stance every take","Sell the arm hit","Weak-hand shooting looks less steady"],
+ L:[["Fire from cover, take a hit to the right arm","5 takes"],["Switch to your left hand and return fire","Film it"],["Move between two covers, get hit, switch hands, keep firing","One continuous take"]],
+ x:"Replica only. Never point at a face. Switch or drop the gun over a mat."},
+{t:"Background soldier",c:"Scenarios",w:"Buddy",g:["Replica rifle","Phone"],s:"You're in the background of a battle scene.",
+ why:"Background soldiers make or break a war scene. One person looking wrong at the back ruins the shot.",
+ k:["Rifle carry and posture","Move with purpose without pulling focus","Hit your marks, stay out of the hero's light"],
+ L:[["Patrol across the room with the rifle and hit your end mark","Take turns, film it"],["React in the background: the hero gets shot, you take cover","5 takes"],["You get shot in the background and fall while the 'hero' keeps going","On camera"]],
+ x:"Replica rifle only. Muzzle down when moving near others."},
+{t:"Background henchman",c:"Scenarios",w:"Buddy",g:["Mats","Rubber knives","Phone"],s:"You're one of the bad guys who gets taken out.",
+ why:"Henchmen take the most hits, throws and falls. It's how many stunt performers get their first credits.",
+ k:["Come in on cue","Sell the hit big","Get out of frame or stay down"],
+ L:[["Come in, take a punch reaction and go down","Take turns as 'the hero'"],["Attack with a rubber knife, get disarmed and thrown onto the mat","5 takes each"],["Two henchmen take turns attacking the hero, both go down","On camera"]],
+ x:"Every hit is sold. Rubber knives only. Mats under every fall."},
+{t:"Background bystander",c:"Scenarios",w:"Solo",g:["Mats","Phone"],s:"You're a normal person caught in a shootout.",
+ why:"Real people don't move like stunt performers. Playing untrained and scared is a skill.",
+ k:["No training showing","Panic, freeze, run","Protect your head"],
+ L:[["React to gunshots: freeze, then run to a mark","5 takes"],["Trip while running away and scramble back up","Film it"],["Get caught in the crossfire, hit, fall and crawl","On camera"]],
+ x:"Mats under any fall. Clear running space."},
+{t:"Utility: three jobs, one scene",c:"Scenarios",w:"Buddy",g:["Mats","Replica handgun","Training sword","Phone"],s:"Same scene, you play three different background characters.",
+ why:"Utility stunt performers get used in several roles on the same day. Each one has to look like a different person.",
+ k:["Change your walk and posture each time","Different weapon, different character","Hit your marks every time"],
+ L:[["Play a guard with a handgun who gets knocked out","Take turns"],["Come back as a swordsman who gets cut down","5 takes"],["Come back as a bystander thrown by a blast onto the crash mat","Cut all three together"]],
+ x:"Replicas and training weapons only. Mats under every fall."},
+// EXTRA: equipment on site
+{t:"Pilates for control",c:"Body",w:"Solo",g:["Pilates equipment","Mats"],s:"Core control and body awareness.",
+ why:"Falls, wires and fights all need a strong, controlled centre. Pilates builds the control that keeps you safe in the air and on the ground.",
+ k:["Breathe with the movement","Neutral spine, then controlled rotation","Slow is harder and better"],
+ L:[["Hundreds, roll-ups and leg circles on the mat","10 reps each, 2 rounds"],["Pilates equipment: footwork, leg springs and core series","3 x 10, light springs"],["Pilates equipment: balance and twist work, plus planks with control","3 x 8, add a hold at the end"]],
+ x:"Only use equipment settings you know. Light springs first."},
+{t:"Props in a fight",c:"Stunt action",w:"Buddy",g:["Props","Rubber weapons","Mats"],s:"Chairs, tables, bottles and whatever's in the room.",
+ why:"Real fights use the room. Productions love performers who can make a prop part of the choreography safely.",
+ k:["Check every prop before you use it","Soft, rubber or breakaway only for hits","The prop moves, the person stays safe"],
+ L:[["Pick up and use a prop as a shield or barrier","5 takes"],["Rubber prop hit to a miss, buddy reacts","5 takes each, swap"],["Fight using 2 props with a fall onto mats","3 takes on camera"]],
+ x:"Inspect props for damage first. Nothing hard aimed at a person."},
+{t:"Swords & sticks",c:"Tactical",w:"Buddy",g:["Training swords","Sticks"],s:"Cuts, parries and footwork.",
+ why:"Period, fantasy and martial arts productions all need clean blade and stick work that's safe at speed.",
+ k:["Aim at the blade, never the body","Footwork drives the exchange","Agree the phrase before you speed up"],
+ L:[["Cuts 1 to 5 solo, slow","3 rounds"],["Cut and parry phrase with your buddy","5 runs at half speed, swap"],["Phrase with footwork forward and back, on camera","3 clean takes at 3/4"]],
+ x:"Training weapons only. Check them for cracks or damage before use."},
+// TRAINED ONLY
+{t:"Wire jerk-back",c:"Wires & high falls",w:"Buddy",g:["Wire rig","Harness","Crash mat"],trained:true,s:"Blast-back pulled by the team.",
+ why:"Explosions and big hits are done on a jerk-back. The team pull and your shape sell it.",
+ k:["Harness and line check every time","Clear calls between performer and pullers","Shape in the air, land on the mat"],
+ L:[["Harness check and a dry run with no pull","3 dry runs"],["Low pull to the crash mat","5 pulls"],["Full pull with a reaction, on camera","Only as many as the team can do fresh"]],
+ x:"Only for people NZSS trained or assessed on this rig, including the pullers."},
+{t:"Wire somersault & anti-grav",c:"Wires & high falls",w:"Buddy",g:["Wire rig","Harness"],trained:true,s:"Assisted flips, wall runs and hang time.",
+ why:"Wire work is how film makes people fly, flip and run up walls. Productions need performers already comfortable on the line.",
+ k:["Trust the line, keep your shape","Small, controlled steps","Clear calls with the operators"],
+ L:[["Harness check, then assisted hang and shape","5 holds"],["Assisted tuck or wall walk","5 reps"],["Less assist, land on a mark","Short sets, rest between"]],
+ x:"Only on rigs you've been trained on at NZSS, with a trained operator."},
+{t:"Mini high falls",c:"Wires & high falls",w:"Buddy",g:["Mini high fall setup","Crash mat"],trained:true,s:"Back and face-off falls from low height.",
+ why:"High falls are a signature stunt. Building height slowly and cleanly is how you get there safely.",
+ k:["Check the mat and landing zone","Commit to the shape","Height only goes up when it's clean"],
+ L:[["Back fall from the lowest step","5 reps"],["Next height up once it's clean","5 reps"],["Add a reaction before the fall","5 reps, buddy checks each landing"]],
+ x:"Only if NZSS trained or assessed on this equipment. Buddy checks the mat every rep."}
+];
+const CATS=["All",...new Set(CARDS.map(c=>c.c))];
+const LVLS=["Foundation","Intermediate","Advanced"];
+const WHO=["Anyone","Solo","Buddy"];
+let f={c:"All",l:"Foundation",w:"Anyone"};
+try{const s=JSON.parse(localStorage.getItem("shc-f2")||"null");if(s)f={...f,...s}}catch(e){}
+const $=id=>document.getElementById(id);
+const num=c=>String(CARDS.indexOf(c)+1).padStart(2,"0");
+const lvlI=()=>LVLS.indexOf(f.l);
+const ICON_P={
+"FFC fundamentals":'<path d="M12 3l7 3v6c0 4.2-3 7.2-7 9-4-1.8-7-4.8-7-9V6z"/><path d="M8.8 12.2l2.2 2.2 4.4-4.6"/>',
+"Body":'<path d="M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/>',
+"Stunt action":'<path d="M13.5 2.5L4.5 14h6.5l-1 7.5 9-11.5H12.5z"/>',
+"Tactical":'<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>',
+"Creature":'<circle cx="7" cy="9" r="1.8"/><circle cx="11" cy="6" r="1.8"/><circle cx="15.5" cy="6.5" r="1.8"/><circle cx="18.5" cy="10.5" r="1.8"/><path d="M8.5 17.5c0-3 2-5.5 4.5-5.5s4 2 4 4.2c0 2.3-2 3.3-4.2 3.3-2 0-4.3.4-4.3-2z"/>',
+"Acting":'<path d="M4 4h11v6.5c0 3.6-2.5 6-5.5 6S4 14.1 4 10.5z"/><path d="M7 8h1.5M10.5 8H12M7.2 12c1.4 1.3 3.2 1.3 4.6 0"/><path d="M15 8h5v6c0 3.4-2.4 6-5.3 6-1.8 0-3.3-.8-4.3-2.2"/>',
+"Movement":'<circle cx="14.5" cy="4.5" r="2"/><path d="M8 21l3.5-6 3 2.5V22M6 11l3.5-3.5 4 1 2.5 3.5 3 1M11.5 15l1.5-6"/>',
+"Camera":'<rect x="3" y="7" width="12" height="10" rx="1.5"/><path d="M15 10.5l6-3v9l-6-3z"/>',
+"Recovery":'<path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/><path d="M8 12.5h2.3l1.2-2.2 1.8 4 1.2-1.8H16"/>',
+"Costume":'<path d="M12 7.5a2 2 0 1 0-2-2"/><path d="M12 7.5v1.5L3 15.5h18L12 9"/><path d="M5 15.5V20h14v-4.5"/>',
+"Scenarios":'<path d="M3.5 10h17v10h-17z"/><path d="M3.5 10l1.5-5.5 15.5 3.5"/><path d="M8.5 5.5l2 3.7M13.5 6.6l2 3.4"/>',
+"Precision":'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/>',
+"Wires & high falls":'<path d="M12 2.5V15M7.5 11l4.5 4.5 4.5-4.5M3.5 20.5h17M6 18h12"/>'
+};
+const icon=(c,cls="ic")=>ICON_P[c]?`<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_P[c]}</svg>`:"";
+function chips(row,list,key){
+  list.forEach(v=>{const b=document.createElement("button");b.className="chip";b.type="button";b.innerHTML=(key==="c"?icon(v,"ic-sm"):"")+v;b.dataset.v=v;b.id=`${key}-${v.replace(/\W+/g,"")}`;
+  b.setAttribute("aria-pressed",f[key]===v);b.onclick=()=>{f[key]=v;row.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));save();render()};row.appendChild(b)})
+}
+function save(){try{localStorage.setItem("shc-f2",JSON.stringify(f))}catch(e){}}
+function filtered(){return CARDS.filter(c=>(f.c==="All"||c.c===f.c)&&(f.w==="Anyone"||c.w===f.w))}
+const whoTag=c=>c.w==="Buddy"?'<span class="tag buddy-tag">Bring a buddy or more</span>':'<span class="tag">Solo</span>';
+function tags(c){return `${whoTag(c)}${c.g.map(g=>`<span class="tag">${g}</span>`).join("")}${(c.trained||c.ta===lvlI())?'<span class="tag trained">Trained only</span>':""}`}
+function render(){
+  const list=filtered();$("count").textContent=`${list.length} of ${CARDS.length} cards · showing ${f.l} ideas`;
+  $("grid").innerHTML=list.length?list.map(c=>`<button class="card" type="button" data-i="${CARDS.indexOf(c)}">
+  <div class="slate"><span>NZSS · Card <b>${num(c)}</b></span><span class="slate-cat">${icon(c.c,"ic-sm")}${c.c}</span></div>
+  <div class="card-body"><div class="card-top"><span class="badge">${icon(c.c)}</span><h3>${c.t}</h3></div><p>${c.s}</p><p><span style="color:var(--gold);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase">${f.l}:</span> ${c.L[lvlI()][0]}</p><div class="tags">${tags(c)}</div></div></button>`).join("")
+  :'<p class="empty">No cards match. Try "All" or "Anyone".</p>';
+}
+$("grid").addEventListener("click",e=>{const b=e.target.closest(".card");if(b)openCard(CARDS[+b.dataset.i])});
+function show(html){$("sheet").innerHTML=html;$("overlay").hidden=false;document.body.style.overflow="hidden";$("sheet").querySelector(".close").focus()}
+function hide(){$("overlay").hidden=true;document.body.style.overflow=""}
+function buddyNote(c){
+  if(c.w==="Buddy")return '<div class="buddy"><div><span>Bring a buddy or more</span><br>Train with one or more stunt-trained buddies. Take turns, swap roles and film each other.</div></div>';
+  return "";
+}
+function openCard(c,again){
+  const li=lvlI();
+  show(`<div class="sheet-head"><span class="eyebrow">NZSS · Card ${num(c)} · ${c.c}</span><button class="close" type="button">Close</button></div>
+  <div class="sheet-title"><span class="badge big">${icon(c.c)}</span><h2>${c.t}</h2></div><div class="tags">${tags(c)}</div>${buddyNote(c)}
+  <h4>Why it matters in film</h4><p>${c.why}</p>
+  <h4>Things to explore</h4><ul class="keys">${c.k.map(s=>`<li>${s}</li>`).join("")}</ul>
+  <h4>Ideas to try</h4><div class="tiers">${c.L.map((t,i)=>`<div class="tier${i===li?" on":""}"><div class="tier-name">${LVLS[i]}${i===li?" · your level":""}${(c.trained||c.ta===i)?' <span class="tag trained">Trained only</span>':""}</div><p>${t[0]}</p></div>`).join("")}</div>
+  <h4>Safety check</h4><p class="safety"><b>Before you start:</b> ${c.x}</p>
+  ${again?'<div class="sheet-actions"><button class="btn" type="button" id="again">Pick another</button></div>':""}`);
+  const a=$("again");if(a)a.onclick=pick;
+}
+const rand=a=>a[Math.floor(Math.random()*a.length)];
+function pick(){const pool=filtered().filter(c=>!c.trained&&c.ta!==lvlI());const p=pool.length?pool:filtered();if(p.length)openCard(rand(p),true)}
+function plan(){
+  const li=lvlI();
+  const pool=filtered().filter(c=>!c.trained&&c.ta!==li).sort(()=>Math.random()-.5);
+  const picks=[];for(const c of pool){if(!picks.some(p=>p.c===c.c))picks.push(c);if(picks.length===3)break}
+  for(const c of pool){if(picks.length===3)break;if(!picks.includes(c))picks.push(c)}
+  window._plan=picks;
+  const needs=[...new Set(picks.filter(c=>c.w!=="Solo").map(c=>c.w))];
+  show(`<div class="sheet-head"><span class="eyebrow">3 ideas · ${f.l}</span><button class="close" type="button">Close</button></div>
+  <h2>Pick one, or do all three</h2>
+  ${needs.length?`<div class="buddy"><div><span>Bring a buddy or more</span><br>Some of these ideas need a partner. Bring one or more buddies and take turns.</div></div>`:""}
+  ${picks.map((c,i)=>`<div class="plan-item"><span class="plan-time">${c.c}</span><div><button class="plan-link" type="button" data-p="${i}">${c.t}</button><div class="plan-sub">${c.L[li][0]}${c.w!=="Solo"?" · bring a buddy or more":""}</div></div></div>`).join("")}
+  <div class="sheet-actions"><button class="btn" type="button" id="reroll">Shuffle again</button></div>`);
+  $("reroll").onclick=plan;
+  $("sheet").querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>openCard(window._plan[+b.dataset.p]));
+}
+const ROLE=[
+ ["You're doubling the lead actor","The hero. Every move has to match the actor's style and look like them."],
+ ["You're doubling the villain","Big, confident and dangerous. You're the threat in the shot."],
+ ["You're doubling the lead actress","Match her look, her height and her fighting style."],
+ ["You're in the background as a soldier","You're not the focus, but if you move wrong the shot is ruined. Stay real, stay on your marks."],
+ ["You're in the background as a henchman","You're there to get hit, get thrown and go down convincingly."],
+ ["You're in the background as a bystander","No weapon training shown. React like a normal person caught in the chaos."],
+ ["You're the utility stunt performer","Whatever the coordinator needs: you might hit, fall, react or get dragged."]
+];
+const WEAP={
+ "a K15 rifle (replica)":["Clear a doorway and take a hit in the shoulder","Take fire, drop to cover and return fire","Get shot running across open ground and go down","Lose the rifle in a fight and go to your sidearm","Get disarmed and take a rifle-butt hit (a miss, sold by you)"],
+ "a handgun (replica)":["Draw, fire and take cover behind a box","Get shot in your shooting arm and switch hands","Get disarmed by your buddy and go into a fight","Hold someone at gunpoint, then they turn it on you","Fire while backing away, then trip and fall"],
+ "a training sword":["Fight one opponent, get cut on the arm and finish the fight","Lose your sword, roll, and pick it back up","Fight two opponents taking turns","Get run through (sold, not touched) and go down","Disarm your opponent and hold them at sword point"],
+ "a rubber knife":["Get slashed on the forearm and disarm the attacker","Ambush someone from behind (sold, not touched)","Knife fight that goes to the ground","Get stabbed in the gut (sold) and stagger away","Pull the knife from your belt mid-fight"],
+ "no weapon":["Get punched, fall and get back up","Tackle someone and take them down","Get thrown into a soft wall and slide down","Carry a wounded buddy to cover","Get hit by a blast and crawl out dazed"]
+};
+const TWIST=["in one continuous take","hitting your start and end marks","5 matching takes in a row","with no words","on your weak side","in a costume piece or heels","then you get hit again halfway","and the camera is behind you","as if you've never fought before","John Wick style: slick and efficient"];
+function scen(){
+  const r=rand(ROLE),w=rand(Object.keys(WEAP)),beat=rand(WEAP[w]),t=rand(TWIST);
+  show(`<div class="sheet-head"><span class="eyebrow">Mini scenario</span><button class="close" type="button">Close</button></div>
+  <h2>${r[0]}.</h2>
+  <p style="margin:0 0 10px;color:var(--muted)">${r[1]}</p>
+  <h4>Weapon</h4><p style="font-size:18px;margin:0">${w==="no weapon"?"No weapon.":"You have "+w+"."}</p>
+  <h4>The action</h4><p style="font-size:18px;margin:0">${beat}, <span style="color:var(--gold)">${t}</span>.</p>
+  <h4>Make it work</h4><ul class="keys"><li>Decide who your character is and what they want</li><li>Plan it, walk it, then build the speed</li><li>Take turns with your buddy and swap roles</li><li>Film it. Not good yet? Film it again next time and compare</li></ul>
+  <h4>Safety check</h4><p class="safety"><b>Before you start:</b> replica guns and rubber or training weapons only. Never point a gun at a face. Every hit is sold, never landed. Mats under any fall.</p>
+  <div class="sheet-actions"><button class="btn" type="button" id="reroll">New scenario</button></div>`);
+  $("reroll").onclick=scen;
+}
+$("overlay").addEventListener("click",e=>{if(e.target.id==="overlay"||e.target.classList.contains("close"))hide()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("overlay").hidden)hide()});
+$("pick").onclick=pick;$("scen").onclick=scen;$("plan").onclick=plan;
+chips($("catRow"),CATS,"c");chips($("lvlRow"),LVLS,"l");chips($("whoRow"),WHO,"w");
+render();
+</script>
+</body>
+</html>
