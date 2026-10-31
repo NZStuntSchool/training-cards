@@ -129,6 +129,11 @@ header .lede{font-size:16px}
 .book-t{font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:5px}
 .book:hover .book-t{color:var(--gold)}
 .book-btn{text-decoration:none;display:inline-block;margin-top:6px}
+.feedback{display:flex;flex-direction:column;align-items:center;gap:8px;border:1px solid var(--gold);border-radius:6px;padding:18px 20px;margin-top:16px;max-width:560px;width:100%}
+.feedback h3{font-family:var(--display);font-weight:800;font-size:26px;text-transform:uppercase;margin:0;color:var(--gold)}
+.feedback p{margin:0;color:var(--muted)}
+.site{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:5px;margin-top:10px}
+.site:hover{color:var(--gold)}
 .start{margin:0;padding:12px 14px;border:1px dashed var(--gold);border-radius:6px;color:var(--muted)}
 .start b{color:var(--fg)}
 .ic{width:24px;height:24px;display:block}
@@ -140,6 +145,9 @@ header .lede{font-size:16px}
 .badge.big{width:56px;height:56px}.badge.big .ic{width:30px;height:30px}
 .sheet-title{display:flex;gap:14px;align-items:center;margin-bottom:10px}
 .sheet-title h2{margin:0}
+.lv-all{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.lv-all li span,.lv-k{color:var(--gold);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-right:6px}
+.lv-all .tr{font-style:normal;color:var(--warn);font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
 </style>
 </head>
 <body>
@@ -196,6 +204,12 @@ header .lede{font-size:16px}
     <p>Come along, reconnect with the stunt community and keep developing your skills.</p>
     <a class="btn book-btn" href="https://www.nzstuntschool.com/en/event/open-stunt-gym-nov-2026/4017/" target="_blank" rel="noopener">Book the next session</a>
     <div class="motto">Train. Connect. <span>Grow.</span></div>
+    <div class="feedback">
+      <h3>Get feedback on your footage</h3>
+      <p>Filmed your training? NZSS can also send you feedback on your training footage.</p>
+      <a class="btn ghost book-btn" href="https://www.nzstuntschool.com/en/checkout/?product_id=7637&amp;product_type=digital_product" target="_blank" rel="noopener">Get footage feedback</a>
+    </div>
+    <a class="site" href="https://www.nzstuntschool.com" target="_blank" rel="noopener">www.nzstuntschool.com</a>
     <div class="eyebrow">NZ Stunt School – Open Stunt Gym</div>
   </footer>
 </div>
@@ -687,11 +701,13 @@ const CARDS=[
 const CATS=["All",...new Set(CARDS.map(c=>c.c))];
 const LVLS=["Foundation","Intermediate","Advanced"];
 const WHO=["Anyone","Solo","Buddy"];
-let f={c:"All",l:"Foundation",w:"Anyone"};
-try{const s=JSON.parse(localStorage.getItem("shc-f2")||"null");if(s)f={...f,...s}}catch(e){}
+const LVL_OPTS=["All levels",...LVLS];
+let f={c:"All",l:"All levels",w:"Anyone"};
+try{const s=JSON.parse(localStorage.getItem("shc-f3")||"null");if(s)f={...f,...s}}catch(e){}
 const $=id=>document.getElementById(id);
 const num=c=>String(CARDS.indexOf(c)+1).padStart(2,"0");
 const lvlI=()=>LVLS.indexOf(f.l);
+const MIX=(()=>{const a=CARDS.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a})();
 const ICON_P={
 "FFC fundamentals":'<path d="M12 3l7 3v6c0 4.2-3 7.2-7 9-4-1.8-7-4.8-7-9V6z"/><path d="M8.8 12.2l2.2 2.2 4.4-4.6"/>',
 "Body":'<path d="M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/>',
@@ -712,15 +728,15 @@ function chips(row,list,key){
   list.forEach(v=>{const b=document.createElement("button");b.className="chip";b.type="button";b.innerHTML=(key==="c"?icon(v,"ic-sm"):"")+v;b.dataset.v=v;b.id=`${key}-${v.replace(/\W+/g,"")}`;
   b.setAttribute("aria-pressed",f[key]===v);b.onclick=()=>{f[key]=v;row.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));save();render()};row.appendChild(b)})
 }
-function save(){try{localStorage.setItem("shc-f2",JSON.stringify(f))}catch(e){}}
+function save(){try{localStorage.setItem("shc-f3",JSON.stringify(f))}catch(e){}}
 function filtered(){return CARDS.filter(c=>(f.c==="All"||c.c===f.c)&&(f.w==="Anyone"||c.w===f.w))}
 const whoTag=c=>c.w==="Buddy"?'<span class="tag buddy-tag">Bring a buddy or more</span>':'<span class="tag">Solo</span>';
 function tags(c){return `${whoTag(c)}${c.g.map(g=>`<span class="tag">${g}</span>`).join("")}${(c.trained||c.ta===lvlI())?'<span class="tag trained">Trained only</span>':""}`}
 function render(){
-  const list=filtered();$("count").textContent=`${list.length} of ${CARDS.length} cards · showing ${f.l} ideas`;
+  const list=f.c==="All"?MIX.filter(c=>filtered().includes(c)):filtered();$("count").textContent=`${list.length} of ${CARDS.length} cards · ${f.l==="All levels"?"all levels":"showing "+f.l+" ideas"}${f.c==="All"?" · mixed":""}`;
   $("grid").innerHTML=list.length?list.map(c=>`<button class="card" type="button" data-i="${CARDS.indexOf(c)}">
   <div class="slate"><span>NZSS · Card <b>${num(c)}</b></span><span class="slate-cat">${icon(c.c,"ic-sm")}${c.c}</span></div>
-  <div class="card-body"><div class="card-top"><span class="badge">${icon(c.c)}</span><h3>${c.t}</h3></div><p>${c.s}</p><p><span style="color:var(--gold);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase">${f.l}:</span> ${c.L[lvlI()][0]}</p><div class="tags">${tags(c)}</div></div></button>`).join("")
+  <div class="card-body"><div class="card-top"><span class="badge">${icon(c.c)}</span><h3>${c.t}</h3></div><p>${c.s}</p>${lvlI()<0?`<ul class="lv-all">${c.L.map((t,i)=>`<li><span>${LVLS[i]}</span>${t[0]}${(c.trained||c.ta===i)?' <em class="tr">Trained only</em>':""}</li>`).join("")}</ul>`:`<p><span class="lv-k">${f.l}:</span> ${c.L[lvlI()][0]}</p>`}<div class="tags">${tags(c)}</div></div></button>`).join("")
   :'<p class="empty">No cards match. Try "All" or "Anyone".</p>';
 }
 $("grid").addEventListener("click",e=>{const b=e.target.closest(".card");if(b)openCard(CARDS[+b.dataset.i])});
@@ -753,7 +769,7 @@ function plan(){
   show(`<div class="sheet-head"><span class="eyebrow">3 ideas · ${f.l}</span><button class="close" type="button">Close</button></div>
   <h2>Pick one, or do all three</h2>
   ${needs.length?`<div class="buddy"><div><span>Bring a buddy or more</span><br>Some of these ideas need a partner. Bring one or more buddies and take turns.</div></div>`:""}
-  ${picks.map((c,i)=>`<div class="plan-item"><span class="plan-time">${c.c}</span><div><button class="plan-link" type="button" data-p="${i}">${c.t}</button><div class="plan-sub">${c.L[li][0]}${c.w!=="Solo"?" · bring a buddy or more":""}</div></div></div>`).join("")}
+  ${picks.map((c,i)=>`<div class="plan-item"><span class="plan-time">${c.c}</span><div><button class="plan-link" type="button" data-p="${i}">${c.t}</button><div class="plan-sub">${li<0?c.s:c.L[li][0]}${c.w!=="Solo"?" · bring a buddy or more":""}</div></div></div>`).join("")}
   <div class="sheet-actions"><button class="btn" type="button" id="reroll">Shuffle again</button></div>`);
   $("reroll").onclick=plan;
   $("sheet").querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>openCard(window._plan[+b.dataset.p]));
@@ -790,7 +806,7 @@ function scen(){
 $("overlay").addEventListener("click",e=>{if(e.target.id==="overlay"||e.target.classList.contains("close"))hide()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("overlay").hidden)hide()});
 $("pick").onclick=pick;$("scen").onclick=scen;$("plan").onclick=plan;
-chips($("catRow"),CATS,"c");chips($("lvlRow"),LVLS,"l");chips($("whoRow"),WHO,"w");
+chips($("catRow"),CATS,"c");chips($("lvlRow"),LVL_OPTS,"l");chips($("whoRow"),WHO,"w");
 render();
 </script>
 </body>
